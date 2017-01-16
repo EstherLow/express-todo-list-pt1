@@ -1,4 +1,7 @@
 const Todo = require('../models/todo')
+const express = require('express')
+const router = express.Router();
+
 
 // TODO. import express and create a Router, replace the methods below with routes e.g.
 // router.post('/', function(req,res) => {
@@ -7,51 +10,58 @@ const Todo = require('../models/todo')
 //  }
 // })
 
-function create (params) {
-  Todo.create(params, function (err, todo) {
+
+router.post('/', function(req, res) {
+  console.log(req.body)
+  Todo.create(req.body, function (err, todo) {
     if (err) {
       console.log(err)
       return
     }
-    console.log(todo)
+    res.status(301).json(todo)
   })
-}
+})
 
-function list () {
+
+router.get('/', function(req, res) {
   Todo.find({}, function (err, todos) {
     if (err) {
       console.log(err)
       return
     }
-    console.log(todos)
+    res.json(todos)
   })
-}
+})
 
-function show (id) {
-  Todo.findById(id, function (err, todo) {
+router.get('/:id', function (req, res) {
+  Todo.findById(req.params.id, function (err, todo) {
     if (err) return console.log(err)
-    console.log(todo)
+    res.json(todo)
   })
-}
+})
 
-function update (id, params) {
-  Todo.findOneAndUpdate({ _id: id }, params, function (err, todo) {
+router.put('/:id', function (req, res) {
+  Todo.findByIdAndUpdate(req.params.id, req.body, function (err, todo) {
     if (err) console.log(err)
-    console.log(todo)
+    res.json(todo)
   })
-}
+})
 
-function destroy (id) {
-  Todo.findOneAndRemove({ _id: id }, function (err) {
-    if (err) console.log(err)
-    console.log('User deleted!')
-  })
-}
+router.delete('/:id', function(req, res) {
+   Todo.findByIdAndRemove(req.params.id, function (err, todo) {
+     if (err) return console.log(err)
+     console.log('User deleted!')
+     res.status(200).json(todo);
+   })
 
-module.exports = {
-  create,
-  list,
-  show,
-  update,
-  destroy
-}
+// router.delete('/:name', function(req, res) {
+//    Todo.findOneAndRemove(req.params.name, function (err, todo) {
+//      if (err) return console.log(err)
+//      console.log('User deleted by name!')
+//      res.status(200).json(todo);
+//    })
+// })
+
+})
+
+module.exports = router
