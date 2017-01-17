@@ -1,4 +1,7 @@
-<form action="">
-<h3> ID: </h3><%= todo._id>
-
+<form method="POST" action="/todos/<%= todo._id %>?_method=PUT">
+<h3> ID: </h3> <%= todo._id %>
+<h3> Name: </h3> <input type="text" name="name" value="<%= todo.name %>"></input>
+<h3>Description:</h3><input type="text" name="description" value="<%= todo.description %>"></input>
+<h3>Completed:</h3><input type="text" name="completed" value="<%= todo.completed %>"></input>
+<input type="submit" value="Submit" action="">
 </form>

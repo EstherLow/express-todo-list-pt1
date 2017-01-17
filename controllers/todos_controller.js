@@ -18,7 +18,7 @@ router.post('/add_new', function(req, res) {
       console.log(err)
       return
     }
-    res.status(301).redirect('/todos')
+    res.render('new', {todo: todo})
   })
 })
 
@@ -35,6 +35,13 @@ router.get('/', function(req, res) {
   })
 })
 
+router.get('/update', function(req,res){
+  res.render('update')
+})
+
+router.get('/add_new', function(req, res) {
+  res.render('add_new')
+})
 
 router.get('/:id', function (req, res) {
   Todo.findById(req.params.id, function (err, todo) {
@@ -45,26 +52,20 @@ router.get('/:id', function (req, res) {
 })
 
 router.put('/:id', function (req, res) {
-  Todo.findByIdAndUpdate(req.params.id, req.body, function (err, todo) {
+  Todo.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, todo) {
     if (err) console.log(err)
-    res.json(todo)
+    res.render('new', {todo: todo})
   })
 })
 
 router.delete('/:id', function(req, res) {
+  console.log(req.params.id);
    Todo.findByIdAndRemove(req.params.id, function (err, todo) {
      if (err) return console.log(err)
      console.log('User deleted!')
      res.status(301).redirect('/todos');
    })
 
-// router.delete('/:name', function(req, res) {
-//    Todo.findOneAndRemove(req.params.name, function (err, todo) {
-//      if (err) return console.log(err)
-//      console.log('User deleted by name!')
-//      res.status(200).json(todo);
-//    })
-// })
 
 })
 

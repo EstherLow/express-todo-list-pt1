@@ -16,8 +16,8 @@
       <td> <%= element.name %> </td>
       <td> <%= element.description %></td>
       <td> <%= element.completed %></td>
-      <td> <button type="submit" id="update" >Update</button>
-      <td> <form method="POST" action="/:id?_method=DELETE"><button type="submit" id="delete">Delete</button></form>
+      <td> <form method="GET" action="/todos/<%= element._id %>"><button type="submit" id="update" onclick="location.href='/todos/update'">Update</button></form></td>
+      <td> <form method="POST" action="/todos/<%= element._id %>?_method=DELETE"><button type="submit" id="delete" >Delete</button></form></td>
     </tr>
     <%  }); %>
   </tbody>
