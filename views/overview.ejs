@@ -1,0 +1,26 @@
+    <table>
+      <thead>
+        <tr>
+          <th>ID No.</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Completed</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+  <tbody>
+    <% todos.forEach(function(element) { %>
+    <tr>
+      <td> <%= element._id %></td>
+      <td> <%= element.name %> </td>
+      <td> <%= element.description %></td>
+      <td> <%= element.completed %></td>
+      <td> <button type="submit" id="update" >Update</button>
+      <td> <form method="POST" action="/:id?_method=DELETE"><button type="submit" id="delete">Delete</button></form>
+    </tr>
+    <%  }); %>
+  </tbody>
+</table>
+
+<button type="submit" id='newitem' onclick="location.href='/todos/add_new'">Add New</button>

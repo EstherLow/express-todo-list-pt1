@@ -11,14 +11,14 @@ const router = express.Router();
 // })
 
 
-router.post('/', function(req, res) {
+router.post('/add_new', function(req, res) {
   console.log(req.body)
   Todo.create(req.body, function (err, todo) {
     if (err) {
       console.log(err)
       return
     }
-    res.status(301).json(todo)
+    res.status(301).redirect('/todos')
   })
 })
 
@@ -29,14 +29,18 @@ router.get('/', function(req, res) {
       console.log(err)
       return
     }
-    res.json(todos)
+    //res.json(todos)
+    res.render('overview', { todos: todos })
+    // res.json(todos)
   })
 })
+
 
 router.get('/:id', function (req, res) {
   Todo.findById(req.params.id, function (err, todo) {
     if (err) return console.log(err)
-    res.json(todo)
+    //res.json(todo)
+    res.render("update", {todo: todo})
   })
 })
 
@@ -51,7 +55,7 @@ router.delete('/:id', function(req, res) {
    Todo.findByIdAndRemove(req.params.id, function (err, todo) {
      if (err) return console.log(err)
      console.log('User deleted!')
-     res.status(200).json(todo);
+     res.status(301).redirect('/todos');
    })
 
 // router.delete('/:name', function(req, res) {
