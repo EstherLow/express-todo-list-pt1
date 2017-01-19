@@ -11,6 +11,7 @@ mongoose.connect('mongodb://localhost/todo-list')
 mongoose.Promise = global.Promise
 
 app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/views'));
 app.use(methodOverride('_method'))
 app.use(ejsLayouts);
 app.use(bodyParser.json())

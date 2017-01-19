@@ -1,7 +1,16 @@
-<form method="POST" action="/todos/<%= todo._id %>?_method=PUT">
-<h3> ID: </h3> <%= todo._id %>
-<h3> Name: </h3> <input type="text" name="name" value="<%= todo.name %>"></input>
-<h3>Description:</h3><input type="text" name="description" value="<%= todo.description %>"></input>
-<h3>Completed:</h3><input type="text" name="completed" value="<%= todo.completed %>"></input>
-<input type="submit" value="Submit" action="">
+
+<form method="POST" class="form-horizontal" action="/todos/<%= todo._id %>?_method=PUT">
+  <h3 class="col-md-offset-4 col-md-8"> ID:  <%= todo._id %> </h3>
+  <div class="form-group">
+  <label for="name" class="control-label col-md-2"> Name: </label> <div class="col-md-6"><input type="text" class="form-control" name="name" value="<%= todo.name %>"></input></div>
+</div>
+<div class="form-group">
+  <label for="name" class="control-label col-md-2">Description:</label><div class="col-md-6"><input type="text" class="form-control" name="description" value="<%= todo.description %>"></input></div>
+</div>
+<div class="form-group">
+  <label for="completed" class="control-label col-md-2">Completed:</label><div class="col-md-6"><input type="text" class="form-control" name="completed" value="<%= todo.completed %>"></input></div>
+</div>
+<div class="form-group">
+  <div class="col-md-offset-2 col-md-2"><input class="form-control btn btn-primary" type="submit" value="Submit"></button></div>
+</div>
 </form>

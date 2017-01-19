@@ -1,9 +1,8 @@
 
-<h3> ID: </h3> <%= todo._id %>
-<h3> Name: </h3>
-<p> <%= todo.name %> </p>
-<h3>Description:</h3>
-<p> <%= todo.description %> </p>
-<h3>Completed:</h3>
-<p> <%= todo.completed %> </p>
-<button type="submit" onclick="location.href='/todos'">Okay</button>
+<div class="panel panel-success col-md-offset-1 col-md-8">
+<div class="panel-heading"> ID: <%= todo._id %> </div>
+<div class="panel-body"> Name: <%= todo.name %> </div>
+<div class="panel-body"> Description: <%= todo.description %> </div>
+<div class="panel-body"> Completed: <%= todo.completed %> </div>
+<button class="btn btn-primary" type="submit" onclick="location.href='/todos'">Okay</button>
+</div>

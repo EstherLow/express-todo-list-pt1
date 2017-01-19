@@ -1,4 +1,5 @@
-    <table>
+<h1>To Do List</h1>
+    <table class="table table-striped" >
       <thead>
         <tr>
           <th>ID No.</th>
@@ -16,11 +17,11 @@
       <td> <%= element.name %> </td>
       <td> <%= element.description %></td>
       <td> <%= element.completed %></td>
-      <td> <form method="GET" action="/todos/<%= element._id %>"><button type="submit" id="update" onclick="location.href='/todos/update'">Update</button></form></td>
-      <td> <form method="POST" action="/todos/<%= element._id %>?_method=DELETE"><button type="submit" id="delete" >Delete</button></form></td>
+      <td> <form method="GET" action="/todos/<%= element._id %>"><button class="btn btn-primary" type="submit" id="update" onclick="location.href='/todos/update'">Update</button></form></td>
+      <td> <form method="POST" action="/todos/<%= element._id %>?_method=DELETE"><button class="btn btn-primary" type="submit" id="delete" >Delete</button></form></td>
     </tr>
     <%  }); %>
   </tbody>
 </table>
 
-<button type="submit" id='newitem' onclick="location.href='/todos/add_new'">Add New</button>
+<button type="submit" class="btn btn-primary" id='newitem' onclick="location.href='/todos/add_new'">Add New</button>
